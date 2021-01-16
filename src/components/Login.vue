@@ -4,7 +4,7 @@
         <!-- 登录盒子 -->
         <div class="login_box">
             <div class="login_page">
-                <img src="../assets/css/zhongse.png" alt="">
+                <img src="../assets/css/zhongse.png" title="河北华勘地质勘查有限公司" alt="河北华勘地质勘查有限公司">
             </div>
             <h1>物资管理系统</h1>
             <!-- 登录表单区域 -->
