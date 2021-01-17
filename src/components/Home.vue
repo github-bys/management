@@ -5,16 +5,29 @@
             <el-header>
                 <!-- 公司login -->
                 <div class="header_1">
-                    <img src="../assets/css/zhongse.png" title="河北华勘地质勘查有限公司" alt="河北华勘地质勘查有限公司">
+                    <img src="@/assets/css/zhongse.png" title="河北华勘地质勘查有限公司" alt="河北华勘地质勘查有限公司">
                     <span>物资管理系统后台</span>
                 </div>
 
-                <!-- 用户头像 -->
                 <div class="header_2">
+
+                    <!-- 用户头像 -->
                     <el-avatar icon="el-icon-user-solid"></el-avatar>
-                    <router-link to="/login"><el-button type="primary">退出</el-button></router-link>
+
+                    <!-- 退出和用户信息 -->
+                    <router-link to="/login">
+                        <el-dropdown split-button type="primary">
+                            退出
+                            <el-dropdown-menu slot="dropdown">
+                                <el-dropdown-item>个人中心</el-dropdown-item>
+                                <el-dropdown-item>设置</el-dropdown-item>
+                                <el-dropdown-item>退出</el-dropdown-item>
+                            </el-dropdown-menu>
+                        </el-dropdown>
+                    </router-link>
                 </div>
             </el-header>
+
             <el-container>
                 <!-- 左边侧边栏 -->
                 <el-aside width="200px">
@@ -23,79 +36,41 @@
                         class="el-menu-vertical-demo"
                         background-color="#545c64"
                         text-color="#fff"
-                        active-text-color="#ffd04b">
+                        active-text-color="#ffd04b"
+                        router
+                        >
+
+                        <el-menu-item index="/home">
+                            <i class="el-icon-house"></i>
+                            <span slot="title">首页</span>
+                        </el-menu-item>
+
+                        <el-menu-item index="/supplies">
+                            <i class="el-icon-phone-outline"></i>
+                            <span slot="title">采购申请</span>
+                        </el-menu-item>
+
+                        <el-menu-item index="/instorage">
+                            <i class="el-icon-sell"></i>
+                            <span slot="title">物资入库</span>
+                        </el-menu-item>
+                
+                        <el-menu-item index="/outstorage">
+                            <i class="el-icon-sold-out"></i>
+                            <span slot="title">物资出库</span>
+                        </el-menu-item>
+                    
+                        <el-menu-item index="/storages">
+                            <i class="el-icon-s-grid"></i>
+                            <span slot="title">库存管理</span>
+                        </el-menu-item>
 
                         <!-- 一级菜单 -->
-                        <el-submenu index="1">
-                            <template slot="title">
-                            <!-- 图标 -->
-                            <i class="el-icon-phone-outline"></i>
-                            <!-- 文本 -->
-                            <span>采购申请</span>
-                            </template>
-
-                            <el-menu-item-group>
-                            <template slot="title">采购申请</template>
-                            </el-menu-item-group>
-                            
-                            <!-- 二级菜单 -->
-                            <el-submenu index="1-2">
-                            <template slot="title">选项1</template>
-                            <el-menu-item index="1-2-1">选项1</el-menu-item>
-                            </el-submenu>
-                        </el-submenu>
-
-                        <el-submenu index="2">
-                            <template slot="title">
-                            <i class="el-icon-sell"></i>
-                            <span>物资入库</span>
-                            </template>
-
-                            <el-menu-item-group>
-                            <template slot="title">物资入库</template>
-                            </el-menu-item-group>
-
-                            <el-submenu index="2-2">
-                            <template slot="title">选项1</template>
-                            <el-menu-item index="2-2-1">选项1</el-menu-item>
-                            </el-submenu>
-                        </el-submenu>
-
-                        <el-submenu index="3">
-                            <template slot="title">
-                            <i class="el-icon-sold-out"></i>
-                            <span>物资出库</span>
-                            </template>
-
-                            <el-menu-item-group>
-                            <template slot="title">物资出库</template>
-                            </el-menu-item-group>
-
-                            <el-submenu index="3-2">
-                            <template slot="title">选项1</template>
-                            <el-menu-item index="3-2-1">选项1</el-menu-item>
-                            </el-submenu>
-                        </el-submenu>
-
-                        <el-submenu index="4">
-                            <template slot="title">
-                            <i class="el-icon-s-grid"></i>
-                            <span>库存管理</span>
-                            </template>
-
-                            <el-menu-item-group>
-                            <template slot="title">库存管理</template>
-                            </el-menu-item-group>
-
-                            <el-submenu index="4-2">
-                            <template slot="title">选项1</template>
-                            <el-menu-item index="4-2-1">选项1</el-menu-item>
-                            </el-submenu>
-                        </el-submenu>
-
                         <el-submenu index="5">
                             <template slot="title">
+                            <!-- 图标 -->
                             <i class="el-icon-s-check"></i>
+                            <!-- 文本 -->
                             <span>角色与权限管理</span>
                             </template>
 
@@ -103,20 +78,33 @@
                             <template slot="title">角色与权限管理</template>
                             </el-menu-item-group>
 
+                            <!-- 二级菜单 -->
+                            <el-submenu index="4-2">
+                            <template slot="title">选项1</template>
+                            <el-menu-item index="/permission">选项1</el-menu-item>
+                            </el-submenu>
+
                         </el-submenu>
                         
                     </el-menu>
                 </el-aside>
 
                 <!-- 右侧内容主体区域 -->
-                <el-main>Main</el-main>
+                <el-main>
+
+                    <!-- 子路由出口 -->
+                    <router-view></router-view>
+                </el-main>
+
             </el-container>
+            
         </el-container>
     </div>
 </template>
 
 <script>
 export default {
+    name: 'HomeIndex',
 }
 </script>
 
@@ -139,6 +127,8 @@ export default {
         align-items: center;
         color: #fff;
         font-size: 25px;
+
+        // 公司login
         .header_1 {
             display: flex;
             align-items: center;
@@ -150,10 +140,12 @@ export default {
         span {
             margin-left: 20px;
         }
+
+        // 用户头像
         .header_2 {
             display: flex;
             align-items: center;
-            .el-button {
+            .el-dropdown {
                 margin-left: 20px;
             }
         }

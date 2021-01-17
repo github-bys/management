@@ -1,10 +1,10 @@
 <template>
     <div class="login_cont">
-        <img src="../assets/dlxt.jpg" alt="">
+        <img src="@/assets/dlxt.jpg" alt="">
         <!-- 登录盒子 -->
         <div class="login_box">
             <div class="login_page">
-                <img src="../assets/css/zhongse.png" title="河北华勘地质勘查有限公司" alt="河北华勘地质勘查有限公司">
+                <img src="@/assets/css/zhongse.png" title="河北华勘地质勘查有限公司" alt="河北华勘地质勘查有限公司">
             </div>
             <h1>物资管理系统</h1>
             <!-- 登录表单区域 -->
@@ -21,7 +21,7 @@
 
                 <!-- 按钮 -->
                 <el-form-item class="btns">
-                    <el-button type="primary" @click="login">登录</el-button>
+                    <el-button type="primary" @click="login" :loading="loginLoading">登录</el-button>
                     <el-button type="info" @click="resetform">重置</el-button>
                 </el-form-item>
             </el-form> 
@@ -35,6 +35,7 @@
 
 <script>
 export default {
+    name: 'LoginIndex',
     data() {
       return {
         //   登录表单数据绑定对象
@@ -54,7 +55,8 @@ export default {
             { required: true, message: '请输入登录密码', trigger: 'blur' },
             { min: 6, max: 15, message: '长度在 6 到 15 个字符', trigger: 'blur' }
           ]
-        }
+        },
+        loginLoading: false
       };
     },
     methods: {
@@ -62,10 +64,12 @@ export default {
         resetform() {
             // console.log(this)
             this.$refs.formref.resetFields();
+            this.loginLoading = false
         },
         login() {
             this.$refs.formref.validate(valid => {
                 console.log(valid);
+                this.loginLoading = true
             });
         }
     }
